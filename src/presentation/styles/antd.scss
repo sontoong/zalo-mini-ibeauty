@@ -1,0 +1,91 @@
+// Upload
+.customSizedUpload {
+  .ant-upload {
+    width: 71px !important;
+    height: 71px !important;
+  }
+  .ant-upload-list-item-container {
+    width: 71px !important;
+    height: 71px !important;
+  }
+}
+
+// Select
+.customSelect {
+  .ant-select-item-option:not(:last-child) {
+    border-bottom: 1px solid #f4f6f4;
+  }
+  .ant-select-selector {
+    width: 100%;
+  }
+}
+
+// Notification
+.ant-notification-notice-wrapper {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+// Checkbox
+.custom-checkbox .ant-checkbox-checked .ant-checkbox-inner {
+  background: linear-gradient(
+    90deg,
+    #03380a 0%,
+    #04450d 32%,
+    #065710 65.5%,
+    #076612 100%
+  ) !important;
+  border-color: #065710 !important;
+}
+
+// Select
+.custom-select.ant-select {
+  .ant-select-selector {
+    .ant-select-selection-item {
+      font-weight: 500;
+    }
+  }
+}
+
+// Tab
+.custom-tabs.ant-tabs {
+  .ant-tabs-nav {
+    .ant-tabs-tab {
+      color: #6e876e;
+    }
+  }
+}
+
+// Date picker
+@media (max-width: 648px) {
+  .ant-picker-panels {
+    position: relative;
+    > *:last-child {
+      .ant-picker-date-panel {
+        width: auto;
+      }
+      .ant-picker-week-panel {
+        width: auto;
+      }
+      .ant-picker-month-panel {
+        width: auto;
+      }
+      .ant-picker-quarter-panel {
+        width: auto;
+      }
+      .ant-picker-year-panel {
+        width: auto;
+      }
+      .ant-picker-header-view,
+      .ant-picker-body {
+        display: none;
+      }
+      .ant-picker-header {
+        border: none;
+        position: absolute;
+        right: 0;
+        height: 40px;
+      }
+    }
+  }
+}
