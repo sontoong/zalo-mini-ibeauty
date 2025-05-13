@@ -16,6 +16,9 @@ import "./presentation/styles/tailwind.css";
 // Custom antd css
 import "./presentation/styles/antd.scss";
 
+// Leaflet stylesheet
+import "leaflet/dist/leaflet.css";
+
 import "zmp-ui/zaui.css";
 
 import "./presentation/styles/Topbar.scss";

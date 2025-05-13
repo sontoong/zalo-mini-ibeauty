@@ -14,6 +14,11 @@ import { getBasePath } from "./presentation/utils/zma";
 
 import { validateMessages } from "./presentation/constants/validate-messages";
 import HomePage from "./presentation/pages/HomePage";
+import ServicePage from "./presentation/pages/ServicePage";
+import StoresPage from "./presentation/pages/StoresPage";
+import SearchPage from "./presentation/pages/SearchPage";
+import LocationPage from "./presentation/pages/LocationPage";
+import CurrentLocationPage from "./presentation/pages/CurrentLocationPage";
 
 import "dayjs/locale/vi";
 import timezone from "dayjs/plugin/timezone";
@@ -46,6 +51,26 @@ const router = createBrowserRouter(
         {
           path: "/",
           element: <HomePage />,
+        },
+        {
+          path: "/services/:serviceId",
+          element: <ServicePage />,
+        },
+        {
+          path: "/stores",
+          element: <StoresPage />,
+        },
+        {
+          path: "/search",
+          element: <SearchPage />,
+        },
+        {
+          path: "/location",
+          element: <LocationPage />,
+        },
+        {
+          path: "/current-location",
+          element: <CurrentLocationPage />,
         },
       ],
     },

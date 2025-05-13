@@ -34,10 +34,13 @@ module.exports = {
         "copy-button": "0px 1px 2px 0px #1018280F",
       },
       colors: {
+        primary1: "#F0F9FC",
         primary5: "#00BFFF",
+        primary6: "#04A9E0",
         stroke1: "#F5F6F7",
         stroke2: "#EEF0F2",
-        surface: "#F8FAF8",
+        surface: "#FAFBFC",
+        blue5: "#4C87D9",
         red4: "#EE2F2F",
         gray1: "#F4F6F4",
         gray2: "#DDE3DD",
@@ -45,8 +48,9 @@ module.exports = {
         gray4: "#8FA38F",
         gray5: "#6E876E",
         gray6: "#536553",
-        gray7: "#374337",
+        gray7: "#6E7987",
         gray8: "#535B65",
+        gray9: "#003D52",
         green1: "#ECFEEE",
         green2: "#CFF3D3",
         green3: "#52CE92",
@@ -60,4 +64,21 @@ module.exports = {
       },
     },
   },
+  plugins: [
+    function ({ addUtilities }) {
+      const scrollbarUtilities = {
+        ".hide-scrollbar": {
+          /* Firefox */
+          "scrollbar-width": "none",
+          /* IE and Edge */
+          "-ms-overflow-style": "none",
+          /* Chrome, Safari, Opera */
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+        },
+      };
+      addUtilities(scrollbarUtilities);
+    },
+  ],
 };

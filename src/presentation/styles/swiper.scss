@@ -1,10 +1,12 @@
 .swiper-pagination.swiper-pagination-horizontal {
   > .swiper-pagination-bullet {
-    width: 10px;
-    height: 10px;
+    width: 6px;
+    height: 6px;
 
     &.swiper-pagination-bullet-active {
-      background: #038546;
+      background: #00bfff;
+      width: 11px;
+      border-radius: 12px;
     }
   }
 }
