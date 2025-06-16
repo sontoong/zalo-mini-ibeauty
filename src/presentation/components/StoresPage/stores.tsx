@@ -1,22 +1,58 @@
-import React, { FC } from "react";
-import { Button } from "../common/button";
+import React, { FC, useEffect, useState } from "react";
 import StoreImg from "../../static/store.jpg";
 import StarIcon from "../../static/mynaui_star-solid.png";
 import CouponIcon from "../../static/ticket-discount.png";
 import CoinIcon from "../../static/coin.png";
 import { Divider } from "antd";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const StoreList = () => {
+  const [pageNumber, setPageNumber] = useState(1);
+  const [items, setItems] = useState<Store[]>([]);
+  const [hasMore, setHasMore] = useState<boolean>(true);
+
+  const continueFetching = () => {
+    setPageNumber((prevPageNumber) => prevPageNumber + 1);
+  };
+
+  useEffect(() => {
+    if (!hasMore) return;
+
+    const fetchAllStoresPagination = async () => {
+      const response = await fetchStores(pageNumber);
+
+      if (response) {
+        if (response.length === 0) {
+          setHasMore(false);
+        }
+
+        setItems((prevItems) => [...prevItems, ...response]);
+      }
+    };
+    fetchAllStoresPagination();
+  }, [pageNumber, hasMore]);
+
   return (
-    <div className="mx-4 flex flex-col gap-[14px]">
-      <div className="flex flex-col gap-[12px]">
-        {stores.map((store, index) => (
-          <React.Fragment key={index}>
-            <Store store={store} />
-            {index < stores.length - 1 ? <Divider className="m-0" /> : null}
-          </React.Fragment>
-        ))}
-      </div>
+    <div
+      id="scrollableDiv"
+      className="mx-4 h-[84vh] overflow-auto py-[20px] hide-scrollbar"
+    >
+      <InfiniteScroll
+        dataLength={items.length}
+        next={continueFetching}
+        hasMore={hasMore}
+        loader={<div>Loading...</div>}
+        scrollableTarget="scrollableDiv"
+      >
+        <div className="flex flex-col gap-[12px]">
+          {items.map((store, index) => (
+            <React.Fragment key={index}>
+              <Store store={store} />
+              {index < items.length - 1 ? <Divider className="m-0" /> : null}
+            </React.Fragment>
+          ))}
+        </div>
+      </InfiniteScroll>
     </div>
   );
 };
@@ -86,45 +122,26 @@ export type Store = {
   price?: string;
 };
 
-const stores: Store[] = [
-  {
-    image: StoreImg,
-    name: "Tiệm Nail & Gội đầu Kiki",
-    distance: "2.9km",
-    location: "Quận 4, Thành phố Hồ Chí Minh",
-    rating: 4.9,
-    coupon: "Giảm 60.000đ",
-    tag: "Làm nail",
-    price: "300k - 400k",
-  },
-  {
-    image: StoreImg,
-    name: "Tiệm Nail & Gội đầu Kiki",
-    distance: "2.9km",
-    location: "Quận 4, Thành phố Hồ Chí Minh",
-    rating: 4.9,
-    coupon: "Giảm 60.000đ",
-    tag: "Làm nail",
-    price: "300k - 400k",
-  },
-  {
-    image: StoreImg,
-    name: "Tiệm Nail & Gội đầu Kiki",
-    distance: "2.9km",
-    location: "Quận 4, Thành phố Hồ Chí Minh",
-    rating: 4.9,
-    coupon: "Giảm 60.000đ",
-    tag: "Làm nail",
-    price: "300k - 400k",
-  },
-  {
-    image: StoreImg,
-    name: "Tiệm Nail & Gội đầu Kiki",
-    distance: "2.9km",
-    location: "Quận 4, Thành phố Hồ Chí Minh",
-    rating: 4.9,
-    coupon: "Giảm 60.000đ",
-    tag: "Làm nail",
-    price: "300k - 400k",
-  },
-];
+const stores: Store[] = Array.from({ length: 30 }).map((_) => ({
+  image: StoreImg,
+  name: "Tiệm Nail & Gội đầu Kiki",
+  distance: "2.9km",
+  location: "Quận 4, Thành phố Hồ Chí Minh",
+  rating: 4.9,
+  coupon: "Giảm 60.000đ",
+  tag: "Làm nail",
+  price: "300k - 400k",
+}));
+
+//Fake API
+const fetchStores = (page: number, limit: number = 10): Promise<Store[]> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const startIndex = (page - 1) * limit;
+      const endIndex = page * limit;
+      const paginatedStores = stores.slice(startIndex, endIndex);
+
+      resolve(paginatedStores);
+    }, 800);
+  });
+};

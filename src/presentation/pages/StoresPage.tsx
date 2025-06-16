@@ -23,11 +23,9 @@ const StoresPage = () => {
           </div>
         }
       />
-      <div className="flex-1 overflow-auto">
-        <div className="flex flex-col gap-5 pb-6">
-          <StoresPageFilters />
-          <StoresPageStores />
-        </div>
+      <div className="flex-1 overflow-hidden">
+        <StoresPageFilters />
+        <StoresPageStores />
       </div>
     </Page>
   );
