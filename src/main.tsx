@@ -85,7 +85,7 @@ const MyApp = () => {
         <ConfigProvider
           theme={{
             token: {
-              colorPrimary: "#00BFFF",
+              colorPrimary: "#3DAC78",
               fontFamily:
                 "'Inter',-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
             },

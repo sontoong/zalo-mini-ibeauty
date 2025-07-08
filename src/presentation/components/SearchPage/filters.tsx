@@ -21,6 +21,7 @@ const Filters = () => {
           checked={selectedTags.includes(tag)}
           onCheckChange={(checked) => handleChange(tag, checked)}
           className="m-0 rounded-[20px] px-[8px] py-[4px] text-xs font-normal"
+          color="#3DAC78"
         >
           {tag}
         </CheckableTag>
