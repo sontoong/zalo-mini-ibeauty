@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { CheckableTag } from "../common/tag";
-import { Icon, Picker } from "zmp-ui";
+import { Picker } from "zmp-ui";
 import ArrowDownIcon from "../../static/arrow-down.png";
 
 const Filters = () => {
@@ -21,6 +21,7 @@ const Filters = () => {
           checked={selectedTags.includes(tag)}
           onCheckChange={(checked) => handleChange(tag, checked)}
           className="m-0 rounded-[20px] px-[8px] py-[4px] text-xs font-normal"
+          color="#3DAC78"
         >
           {tag}
         </CheckableTag>
