@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { CheckableTag } from "../common/tag";
 import { Picker } from "zmp-ui";
 import ArrowDownIcon from "../../static/arrow-down.png";
+import { LocationPopup } from "./location-popup";
+import { Button } from "../common/button";
 
 const Filters = () => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -21,43 +23,33 @@ const Filters = () => {
           checked={selectedTags.includes(tag)}
           onCheckChange={(checked) => handleChange(tag, checked)}
           className="m-0 rounded-[20px] px-[8px] py-[4px] text-xs font-normal"
+          activeClassName="!bg-green1 !border-green5"
           color="#3DAC78"
         >
           {tag}
         </CheckableTag>
       ))}
       {/* Location */}
-      <Picker
-        mask
-        maskClosable
-        title="Khu vực"
-        placeholder="Khu vực"
-        suffix={
-          <div className="size-[14px]">
-            <img src={ArrowDownIcon} className="size-full object-cover" />
-          </div>
-        }
-        data={[
-          {
-            options: [
-              {
-                key: "key1",
-                value: 1,
-                displayName: "TP. Hồ Chí Minh",
-              },
-            ],
-            name: "option",
-          },
-        ]}
-        action={{
-          text: "Close",
-          close: true,
-        }}
-        inputClass="!text-sm !border !border-stroke2 service-filter-dropdown pr-2 !rounded-[20px]"
-        formatPickedValueDisplay={(value) => {
-          return value.option?.displayName;
-        }}
-      />
+      <LocationPopup>
+        {({ open }, location) => (
+          <Button
+            text={
+              <div className="flex items-center gap-[4px]">
+                <div className="text-xs font-normal text-gray8">
+                  {location ? location : "Khu vực"}
+                </div>
+                <img
+                  src={ArrowDownIcon}
+                  alt=""
+                  className="size-[14px] object-cover"
+                />
+              </div>
+            }
+            className="flex-none rounded-[20px] border border-stroke2 bg-white px-[8px]"
+            onClick={open}
+          />
+        )}
+      </LocationPopup>
     </div>
   );
 };

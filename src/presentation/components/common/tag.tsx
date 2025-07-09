@@ -19,6 +19,7 @@ const CheckableTag: FC<CTagProps> = ({
   checked,
   onCheckChange,
   className,
+  activeClassName,
   ...rest
 }) => {
   return (
@@ -31,7 +32,7 @@ const CheckableTag: FC<CTagProps> = ({
         <div className="relative">
           <OriginTag
             color="blue"
-            className={className}
+            className={`${className} ${activeClassName}`}
             onClick={() => onCheckChange?.(false)}
             {...rest}
           />
@@ -65,4 +66,6 @@ type CTagProps = {
   color?: string;
   checked?: boolean;
   onCheckChange?: (checked: boolean) => void;
+  className?: string;
+  activeClassName?: string;
 } & TagProps;
