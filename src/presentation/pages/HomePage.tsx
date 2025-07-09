@@ -1,4 +1,4 @@
-import React, { FC, useContext, useState } from "react";
+import React, { FC } from "react";
 import { Header, Page } from "zmp-ui";
 import {
   HomePageHead,
@@ -7,6 +7,7 @@ import {
   HomePageServiceList,
   HomePageStores,
 } from "../components/Homepage";
+import HomeIcon from "../static/home-icon-outline.png";
 
 const HomePage: FC = () => {
   return (
@@ -16,8 +17,13 @@ const HomePage: FC = () => {
           title={
             (
               <div className="pb-[88px] pr-[90px]">
-                <div className="flex gap-3">
-                  <div className="text-lg font-medium">Chào Thu Hồng,</div>
+                <div className="flex items-center gap-[12px]">
+                  <img
+                    src={HomeIcon}
+                    alt=""
+                    className="size-[24px] object-cover"
+                  />
+                  <div className="text-lg font-medium">Đăng nhập</div>
                 </div>
               </div>
             ) as unknown as string

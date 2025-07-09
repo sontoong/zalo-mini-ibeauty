@@ -266,11 +266,21 @@ export const SearchBar = forwardRef<SearchBarRef, SearchBarProps>(
           }}
           {...props}
         >
-          <Input
-            placeholder={placeholder}
-            prefix={<img src={SearchIcon} />}
-            className={`z-10 text-sm font-normal !ring-0 ${className}`}
-          />
+          <ConfigProvider
+            theme={{
+              components: {
+                Input: {
+                  activeShadow: "0 0 0 1px #3dac78",
+                },
+              },
+            }}
+          >
+            <Input
+              placeholder={placeholder}
+              prefix={<img src={SearchIcon} />}
+              className={`z-10 text-sm font-normal ${className}`}
+            />
+          </ConfigProvider>
         </AutoComplete>
       </ConfigProvider>
     );

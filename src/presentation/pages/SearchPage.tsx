@@ -35,7 +35,7 @@ const SearchPage = () => {
         <SearchPageHead callbackFn={setResult} />
       </div>
       <div className="flex-1 overflow-auto">
-        <div className="flex flex-col gap-5 pb-6 pt-4">
+        <div className="flex flex-col gap-5 pb-6">
           <div>
             <SearchPageFilters />
             {result ? null : <SearchPageSearchHistory />}

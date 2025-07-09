@@ -30,7 +30,7 @@ const Head: FC<Props> = ({ callbackFn }) => {
   };
 
   return (
-    <div className="flex items-center gap-[12px]">
+    <div className="flex items-center gap-[12px] pb-[16px]">
       <div className="z-10 flex-1">
         <Form
           form={form}
