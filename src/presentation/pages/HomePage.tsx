@@ -1,44 +1,48 @@
-import React, { FC } from "react";
-import { Header, Page } from "zmp-ui";
+import React, { FC, useEffect, useState } from "react";
+import { Page } from "zmp-ui";
 import {
-  HomePageHead,
+  HomePageHeader,
+  HomePageHeaderFixed,
   HomePagePromotion,
   HomePagePurchaseHistory,
   HomePageServiceList,
   HomePageStores,
 } from "../components/Homepage";
-import HomeIcon from "../static/home-icon-outline.png";
 
 const HomePage: FC = () => {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = (event) => {
+      const scrollTop = event.target.scrollTop;
+      setScrollY(scrollTop);
+    };
+
+    const scrollContainer = document.querySelector(
+      ".homepage-scroll-container",
+    );
+
+    if (scrollContainer) {
+      scrollContainer.addEventListener("scroll", handleScroll, {
+        passive: true,
+      });
+
+      return () => {
+        scrollContainer.removeEventListener("scroll", handleScroll);
+      };
+    } else {
+      console.log("Scroll container not found");
+      return;
+    }
+  }, []);
+
+  const opacity = Math.min(scrollY / 100, 1);
+
   return (
     <Page className="relative flex flex-1 flex-col bg-white">
-      <div className="relative">
-        <Header
-          title={
-            (
-              <div className="pb-[88px] pr-[90px]">
-                <div className="flex items-center gap-[12px]">
-                  <img
-                    src={HomeIcon}
-                    alt=""
-                    className="size-[24px] object-cover"
-                  />
-                  <div className="text-lg font-medium">Đăng nhập</div>
-                </div>
-              </div>
-            ) as unknown as string
-          }
-          className="topbar no-border h-auto flex-none !bg-primary5 !pb-0 pl-4"
-          showBackIcon={false}
-          textColor="white"
-          style={{
-            borderBottomLeftRadius: "100% 70px",
-            borderBottomRightRadius: "100% 70px",
-          }}
-        />
-        <HomePageHead />
-      </div>
-      <div className="flex-1 overflow-auto">
+      <div className="homepage-scroll-container flex-1 overflow-auto hide-scrollbar">
+        <HomePageHeaderFixed opacity={opacity} />
+        <HomePageHeader />
         <div className="flex flex-col gap-[32px] pb-6 pt-[60px]">
           <HomePageServiceList />
           <HomePagePromotion />

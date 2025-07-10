@@ -6,8 +6,10 @@ import { Button } from "../../components/common/button";
 import { SearchBar } from "../../components/common/search-bar";
 import { Divider } from "antd";
 import { useNavigate } from "react-router-dom";
+import { Header as HeaderZMP } from "zmp-ui";
+import HomeIcon from "../../static/home-icon-outline.png";
 
-const Head = () => {
+const HeaderCard = () => {
   const navigate = useNavigate();
 
   return (
@@ -49,4 +51,35 @@ const Head = () => {
   );
 };
 
-export default Head;
+const Header = () => {
+  return (
+    <div className="relative">
+      <HeaderZMP
+        title={
+          (
+            <div className="pb-[88px] pr-[90px]">
+              <div className="flex items-center gap-[12px]">
+                <img
+                  src={HomeIcon}
+                  alt=""
+                  className="size-[24px] object-cover"
+                />
+                <div className="text-lg font-medium">Đăng nhập</div>
+              </div>
+            </div>
+          ) as unknown as string
+        }
+        className="topbar no-border h-auto flex-none !bg-primary5 !pb-0 pl-4"
+        showBackIcon={false}
+        textColor="white"
+        style={{
+          borderBottomLeftRadius: "100% 70px",
+          borderBottomRightRadius: "100% 70px",
+        }}
+      />
+      <HeaderCard />
+    </div>
+  );
+};
+
+export default Header;
